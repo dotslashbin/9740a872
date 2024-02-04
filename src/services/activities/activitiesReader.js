@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://cerulean-marlin-wig.cyclic.app/';
+import { API_BASE_URL } from '../../config'
 
 async function fetchActivities(params) {
 	try {
-		const response = await axios.get(BASE_URL + '/activities');
+		const response = await axios.get(API_BASE_URL + '/activities');
+		
 		return response.data;
+
 	} catch (error) {
 		console.error('Error fetching data: ', error.message);
 		throw error;
