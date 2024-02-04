@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { Avatar, Divider, List, ListItem, ListItemText, ListItemAvatar, Typography } from '@mui/material';
+import { CALL_TYPES_COLORS } from '../../config';
 import { ContactPhone } from '@mui/icons-material';
+import moment from 'moment';
 
 
 // Services
@@ -15,7 +17,6 @@ export default function Activities() {
 		const activitesService = fetchActivities();
 
 		activitesService.then((result) => {
-			console.log("#DEBUG ..", result);
 			setActivities(result);
 		});
 	}, [])
@@ -23,11 +24,11 @@ export default function Activities() {
 	return (
     <List sx={{ width: '100%', maxWidth: 360, maxHeight: 400, overflow: 'auto', bgcolor: 'background.paper' }}>
 			{ activities.map((activity, index) => (
-				<React.Fragment>
-				<ListItem key={`activity_${index}`} alignItems='flex-start'>
+				<React.Fragment key={`activity_${index}`}>
+				<ListItem alignItems='flex-start'>
 					<ListItemAvatar>
 						<Avatar>
-							<ContactPhone />
+							<ContactPhone style={{color: CALL_TYPES_COLORS[activity.call_type]}}/>
 						</Avatar>
 					</ListItemAvatar>
 					<ListItemText primary={activity.call_type} secondary={
@@ -35,12 +36,13 @@ export default function Activities() {
 						<Typography
 							sx={{ display: 'inline' }}
 							component="span"
-							variant="body2"
+							variant="caption"
 							color="text.primary"
 						>
-							Ali Connors
+							From: {activity.from}
+							<br />
+							{moment(activity.created_at).format('MMMM Do YYYY, h:mm:ss')}
 						</Typography>
-						{" — I'll be in your neighborhood doing errands this…"}
 					</React.Fragment>
 					} />
 				</ListItem>
