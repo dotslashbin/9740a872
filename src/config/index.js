@@ -4,4 +4,6 @@ const CALL_TYPES_COLORS = {
 	'voicemail': 'yellow'
 };
 
-export { CALL_TYPES_COLORS };
+const API_BASE_URL = 'https://cerulean-marlin-wig.cyclic.app/';
+
+export { API_BASE_URL, CALL_TYPES_COLORS };
