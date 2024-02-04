@@ -5,12 +5,15 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
+// Components
+import Activities from '../activities/list'
+
 export default function Layout() {
 
 	const pages = [
-		{ label: 'Activity', value: 'activity' },
-		{ label: 'Inbox', value: 'inbox' },
-		{ label: 'All', value: 'all' },
+		{ label: 'Activity', value: 'activity', component:(<Activities />) },
+		{ label: 'Inbox', value: 'inbox', component:null },
+		{ label: 'All', value: 'all', component:null },
 	]
 
   const [value, setValue] = React.useState('activity');
@@ -27,7 +30,7 @@ export default function Layout() {
 						{ pages.map((page, index) => (<Tab key={'tab_' + index} label={page.label} value={page.value} />))}
           </TabList>
         </Box>
-				{ pages.map((page, index) => (<TabPanel key={'content_' + index} value={page.value} >{page.label}</TabPanel>))}
+				{ pages.map((page, index) => (<TabPanel key={'content_' + index} value={page.value} >{page.component}</TabPanel>))}
       </TabContext>
     </Box>
   );
