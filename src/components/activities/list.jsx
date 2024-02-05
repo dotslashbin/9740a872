@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import { Divider, List } from '@mui/material';
 
@@ -8,19 +9,19 @@ import { ActivitiesContext } from '../../app/activitiesContext';
 // Services
 import Activity from './listItem';
 
-export default function Activities() {
+Activities.propTypes = {
+	isArchived: PropTypes.bool
+};
+
+export default function Activities({ isArchived }) {
 
 	const { activities, updateList } = useContext(ActivitiesContext);
 
-	useEffect(() => {
-		console.log('#DEBUG .. somehting has changed from the list !!');
-	}, [activities]);
-
 	return (
 		<List sx={{ width: '100%', maxWidth: 360, maxHeight: 400, overflow: 'auto', bgcolor: 'background.paper' }}>
-			{ activities.map((call, index) => !call.is_archived ? (
+			{ activities.map((activity, index) => activity.is_archived  === isArchived ? (
 				<React.Fragment key={`activity_${index}`}>
-					<Activity data={call} updateList={updateList}/>
+					<Activity data={activity} updateList={updateList}/>
 					<Divider variant="inset" component="li" />
 				</React.Fragment>
 			): null )}
