@@ -4,17 +4,22 @@ import ReactDOM from 'react-dom';
 import Header from './Header.jsx';
 import Layout from './components/layouts/index.jsx';
 
+import { ActivitiesContextProvider } from './app/activitiesContext.js';
+
 function App() {
 	return (
-		<div className="container">
-			<Header />
-			<div className="container-view">
-				<Layout />
+		<ActivitiesContextProvider>
+			<div className="container">
+				<Header />
+				<div className="container-view">
+					<Layout />
+				</div>
 			</div>
-		</div>
+		</ActivitiesContextProvider>
 	);
 }
 
+export default App;
+
 ReactDOM.render(<App />, document.getElementById('app'));
 
-export default App;
