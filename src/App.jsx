@@ -2,16 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Header from './Header.jsx';
+import Layout from './components/layouts/index.jsx';
 
-const App = () => {
-  return (
-    <div className='container'>
-      <Header/>
-      <div className="container-view">Some activities should be here</div>
-    </div>
-  );
-};
+import { ActivitiesContextProvider } from './app/activitiesContext.js';
 
-ReactDOM.render(<App/>, document.getElementById('app'));
+function App() {
+	return (
+		<ActivitiesContextProvider>
+			<div className="container">
+				<Header />
+				<div className="container-view">
+					<Layout />
+				</div>
+			</div>
+		</ActivitiesContextProvider>
+	);
+}
 
 export default App;
+
+ReactDOM.render(<App />, document.getElementById('app'));
+
