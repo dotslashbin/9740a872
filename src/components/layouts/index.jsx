@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 
 // Components
-import Activities from '../activities/list'
+import Activities from '../activities/list';
 
 export default function Layout() {
 
@@ -14,24 +14,24 @@ export default function Layout() {
 		{ label: 'Activity', value: 'activity', component:(<Activities />) },
 		{ label: 'Inbox', value: 'inbox', component:null },
 		{ label: 'All', value: 'all', component:null },
-	]
+	];
 
-  const [value, setValue] = React.useState('activity');
+	const [value, setValue] = React.useState('activity');
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+	const handleChange = (event, newValue) => {
+		setValue(newValue);
+	};
 
-  return (
-    <Box sx={{ width: '100%', typography: 'body1' }}>
-      <TabContext value={value}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <TabList onChange={handleChange} aria-label="THE MAIN MENU">
+	return (
+		<Box sx={{ width: '100%', typography: 'body1' }}>
+			<TabContext value={value}>
+				<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+					<TabList onChange={handleChange} aria-label="THE MAIN MENU">
 						{ pages.map((page, index) => (<Tab key={'tab_' + index} label={page.label} value={page.value} />))}
-          </TabList>
-        </Box>
+					</TabList>
+				</Box>
 				{ pages.map((page, index) => (<TabPanel key={'content_' + index} value={page.value} >{page.component}</TabPanel>))}
-      </TabContext>
-    </Box>
-  );
+			</TabContext>
+		</Box>
+	);
 }
