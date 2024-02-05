@@ -11,9 +11,8 @@ import Activities from '../activities/list';
 export default function Layout() {
 
 	const pages = [
-		{ label: 'Activity', value: 'activity', component:(<Activities />) },
-		{ label: 'Inbox', value: 'inbox', component:null },
-		{ label: 'All', value: 'all', component:null },
+		{ label: 'Activity', value: 'activity', component:(<Activities isArchived={false} />) },
+		{ label: 'Achived', value: 'archived', component:(<Activities isArchived={true} />) },
 	];
 
 	const [value, setValue] = React.useState('activity');
