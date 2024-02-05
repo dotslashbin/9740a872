@@ -5,7 +5,6 @@ const ActivitiesContext = createContext();
 // Services
 import { fetchActivities } from '../services';
 
-
 // eslint-disable-next-line react/prop-types
 const ActivitiesContextProvider = ({ children }) => {
 	const [ activities, setActivities ] = useState([]); 
