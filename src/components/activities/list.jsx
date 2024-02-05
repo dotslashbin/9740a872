@@ -1,33 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { Divider, List } from '@mui/material';
 
+// Context
+import { ActivitiesContext } from '../../app/activitiesContext';
+
 // Services
-import { fetchActivities } from '../../services';
 import Activity from './listItem';
 
 export default function Activities() {
 
-	const [ activities, setActivities ] = useState([]); 
-
-	const updateList = (id, newStatus) => {
-		setActivities(activities.map(item => item.id === id
-			? { ...item, 'is_archived': newStatus }
-			:item
-		));
-
-	};
+	const { activities, updateList } = useContext(ActivitiesContext);
 
 	useEffect(() => {
-		const activitesService = fetchActivities();
-
-		activitesService.then((result) => {
-			setActivities(result);
-		});
-	}, []);
-
-	useEffect(() => {
-		console.log('#DEBUG .. updated activities');
+		console.log('#DEBUG .. somehting has changed from the list !!');
 	}, [activities]);
 
 	return (
