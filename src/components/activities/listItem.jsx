@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Avatar, Button, ListItem, ListItemText, ListItemAvatar, Typography } from '@mui/material';
@@ -17,13 +17,11 @@ Activity.propTypes = {
 
 export default function Activity({data, updateList}) {
 
-	// const updateList = updateList;
-
 	const[activity] = useState(data);
 
 	const toggleArchive = () => {	
 		const newStatus = !activity.is_archived;
-		toggleActivityArchive(activity.id, newStatus).then((result) => {
+		toggleActivityArchive(activity.id, newStatus).then(() => {
 			updateList(activity.id, newStatus);
 		});
 	};
@@ -52,7 +50,7 @@ export default function Activity({data, updateList}) {
 					</React.Fragment>
 				} />
 
-				<Button variant='contained' style={{fontSize: '0.5rem', padding: '4px 8px'}} onClick={() => {toggleArchive();}}>Archive</Button>
+				<Button variant='contained' style={{fontSize: '0.5rem', padding: '4px 8px'}} onClick={() => {toggleArchive();}}>{activity.is_archived? 'Un-Archive':'Archive'}</Button>
 
 			</ListItem>
 		</React.Fragment>
